@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>ToDoリスト学習用</title>
+    <style>
+        /* 少しだけ見た目を整えています */
+        body { font-family: sans-serif; margin: 20px; }
+        ul { margin-top: 20px; }
+        li { margin-bottom: 5px; }
+    </style>
+</head>
+<body>
+
+    <h2>簡易リスト管理</h2>
+
+    <input type="text" id="itemInput" placeholder="項目を入力してください">
+    <button onclick="addItem()">追加</button>
+    <button onclick="deleteItem()">削除</button>
+
+    <ul id="itemList"></ul>
+
+    <script>
+        // データを保存するための配列
+        let listData = [];
+
+        // リストを表示する関数
+        function renderList() {
+            const ul = document.getElementById('itemList');
+            // 一旦中身を空にする
+            ul.innerHTML = '';
+
+            // 配列の中身を一つずつliタグにして追加する
+            listData.forEach((item) => {
+                const li = document.createElement('li');
+                li.textContent = item;
+                ul.appendChild(li);
+            });
+        }
+
+        // 追加ボタンの機能
+        function addItem() {
+            const input = document.getElementById('itemInput');
+            const text = input.value.trim();
+
+            if (text !== "") {
+                listData.push(text); // 配列に追加
+                input.value = '';     // 入力欄を空にする
+                renderList();         // 画面を更新
+            }
+        }
+
+        // 削除ボタンの機能
+        function deleteItem() {
+            const input = document.getElementById('itemInput');
+            const text = input.value.trim();
+
+            // 配列の中から、入力されたテキストと一致しないものだけを残す
+            //（＝一致するものを削除する）
+            const originalLength = listData.length;
+            listData = listData.filter(item => item !== text);
+
+            if (listData.length === originalLength) {
+                alert("一致する項目が見つかりませんでした。");
+            }
+
+            input.value = ''; // 入力欄を空にする
+            renderList();     // 画面を更新
+        }
+    </script>
+
+</body>
+</html>

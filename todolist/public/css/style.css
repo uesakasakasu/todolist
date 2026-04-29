@@ -1,0 +1,19 @@
+.fontColorGreen {
+    color: green;
+}
+
+div {
+    background-color: aqua;
+}
+
+#unique {
+    text-decoration: underline;
+}
+
+.fontSize50 {
+    font-size: 50px;
+}
+
+div .fontColorGreen {
+    font-weight: bold;
+}
